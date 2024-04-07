@@ -1,7 +1,15 @@
-import Image from "next/image";
+import { createClient } from "@/utils/supabase/server";
+import { cookies } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data: todos } = await supabase.from("todos").select();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+    <ul>
+      <li>녜</li>
+    </ul>
   );
 }
